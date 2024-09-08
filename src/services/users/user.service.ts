@@ -1,3 +1,4 @@
+import { IDBRepository } from '../../types/db.type.js';
 import { ERROR_NOTFOUND, NOTFOUND } from '../../types/error.type.js';
 import { ServiceError } from '../../types/service.type.js';
 import { User } from './user.type.js';
@@ -9,6 +10,7 @@ const ERROR_NEGATIVE_AMOUNT = 'ENEGAMOUNT';
 const NOT_ENOUGH_FUNDS = 'not enough funds';
 const ERROR_ENOUGH_FUNDS = 'ENOTENOUGHFUNDS';
 export class UserService {
+    constructor(private dbRepo: IDBRepository) { }
     async updateBalance(id: number, amount: number): Promise<void> {
         if (amount < 0) {
             throw new ServiceError(NEGATIVE_AMOUNT, ERROR_NEGATIVE_AMOUNT, 400);
@@ -22,13 +24,16 @@ export class UserService {
         return this.save(user);
     }
     private async getOne(id: number): Promise<User | null> {
-        const usersMock: User[] = [{ id: 1, name: 'testUser', balance: 0 }];
-
-        const [user = null] = usersMock.filter((item) => item.id === id);
-        return user;
+        return this.dbRepo.request.one<User>({ name: 'user.one', params: { id } });
     }
-    private save(_user: User): Promise<void> {
-        throw new Error('[UserService]: "save" method is not implemented');
+    private async save(user: User): Promise<void> {
+        await this.dbRepo.request.post({
+            name: 'user.update',
+            params: {
+                id: user.id,
+                balance: user.balance,
+            },
+        });
     }
     private checkBalance(user: User, amount: number) {
         if (user.balance < amount) {
