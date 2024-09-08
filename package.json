@@ -39,6 +39,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "cache-manager": "^5.7.6",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "express-openapi-validator": "^5.0.4",

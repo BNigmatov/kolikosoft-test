@@ -3,7 +3,8 @@ import { ExpressApplicationBase } from './app.base.js';
 import { ItemsRouter } from '../routers/items.router.js';
 import { UsersRouter } from '../routers/users.router.js';
 // services
-import { ItemService } from '../services/items/item.service.js';
+// import { ItemService } from '../services/items/item.service.js';
+import { CachBasedItemService } from '../services/items/cachbased.item.service.js';
 import { UserService } from '../services/users/user.service.js';
 // DB
 import MSSQLRepository from '../providers/db/mssql/mssql.repository.js';
@@ -24,7 +25,7 @@ export class Application extends ExpressApplicationBase {
         const apiRoot = this.appConfig.httpServer.apiRoot;
         this.server.setHandler(apiRoot + 'items',
             new ItemsRouter(this,
-                new ItemService(),
+                new CachBasedItemService(),
             ),
         );
         this.server.setHandler(apiRoot + 'users',
