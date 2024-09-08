@@ -18,6 +18,8 @@ servers:
 tags:
   - name: Items
     description: Items route
+  - name: Users
+    description: Users route
   - name: Specification
     description: The swagger API specification
 
@@ -35,6 +37,26 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Item"
+  /users/{id}:
+    parameters:
+      - $ref: "#/components/parameters/idParam"
+    patch:
+      tags:
+        - Users
+      requestBody:
+        content:
+          "application/json":
+            schema:
+              $ref: "#/components/schemas/UserPatch"
+      responses:
+        200:
+          description: Update user balance
+          content:
+            application/json: {}
+        400:
+          $ref: "#/components/responses/ResponseError"
+        404:
+          $ref: "#/components/responses/ResponseError"
   /spec:
     get:
       tags:
@@ -72,6 +94,13 @@ components:
           type: number
         updated_at:
           type: number
+    UserPatch:
+      type: object
+      required:
+        - amount
+      properties:
+        amount:
+          type: number
     Error:
       type: object
       required:
@@ -105,6 +134,13 @@ components:
               type: array
               items:
                 $ref: "#/components/schemas/Error"
+  parameters:
+    idParam:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
   responses:
     ResponseError:
       description: Wrong request result
