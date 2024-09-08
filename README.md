@@ -3,7 +3,54 @@
 One Paragraph of project description goes here
 
 [![Node](https://img.shields.io/badge/node-%3E%3D%2020.15.0-brightgreen.svg)](https://nodejs.org)
-[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow.svg)](https://conventionalcommits.org)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-0.4.0-yellow.svg)](https://conventionalcommits.org)
+
+
+## API spec
+
+To view API spec, your can use [Swagger UI](https://swagger.io/tools/swagger-ui/)
+
+API spec URL: `localhost:3000/api/spec`
+
+### Available endpoints
+
+|endpoint по ТЗ  |APP endpoint  | метод |
+|--|--|--|
+| endpoint 1 | /api/v1/items | GET |--|
+| endpoint 2 | /api/v1/users | PATCH | 
+
+
+### Custom errors
+
+#### PATCH /api/v1/users
+```
+"status": 400
+"message": "Negative amount passed",
+"code": "ENEGAMOUNT",
+"type": "ServiceError"
+```
+```
+"status": 400
+"message": "not enough funds",
+"code": "ENEGAMOUNT",
+"type": "ServiceError"
+```
+```
+"status": 404
+"message": "Not found",
+"code": "ENOTFOUND",
+"type": "ServiceError"
+```
+
+## Database
+ Use [scripts](./db/) to create database.
+
+ ## Env variables
+ ```sh
+ cp .env.template .env
+ ```
+ 
+ See description [here](./.env.template)
 
 
 ## Getting Started
