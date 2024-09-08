@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: kolikosoft-test
+  description: <Add project description here>
+  version: 0.1.0
+  contact:
+    name: BNigmatov
+    email: baha@online.uz
+servers:
+  # we use variable part of url
+  # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#server-object-example
+  - url: http://localhost:3000/api/{baseVersion}
+    variables:
+      baseVersion:
+        enum:
+          - "v1"
+        default: "v1"
+tags:
+  - name: Specification
+    description: The swagger API specification
+
+paths:
+  /spec:
+    get:
+      tags:
+        - Specification
+      security:
+        - {}
+      responses:
+        200:
+          description: Return the API specification
+          content: {}
+components:
+  schemas:
+    Error:
+      type: object
+      required:
+        - message
+        - code
+        - type
+      properties:
+        message:
+          type: string
+        code:
+          oneOf:
+            - type: string
+            - type: integer
+        type:
+          type: string
+        detail:
+          type: object
+          properties:
+            host:
+              type: string
+              format: url
+            path:
+              type: string
+              format: url
+            method:
+              type: string
+              enum:
+                - POST
+                - GET
+            more:
+              type: array
+              items:
+                $ref: "#/components/schemas/Error"
+  responses:
+    ResponseError:
+      description: Wrong request result
+      content:
+        "application/json":
+          schema:
+            type: object
+            properties:
+              error:
+                schema:
+                $ref: "#/components/schemas/Error"
