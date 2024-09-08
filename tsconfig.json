@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    /* Basic Options */
+    "target": "ES2022", /* As of Node.js 16.18.1, 100% of ES2022 is supported. @see: https://node.green/ */
+    "module": "ES2022",
+    "outDir": "dist",
+    "removeComments": true,
+    "sourceMap": false,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "lib": [
+      "ES2023"
+    ] /* @see: https://node.green/ Specify library files to be included in the compilation. */
+  },
+  "include": [
+    "src",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.?ts",
+    "arch/**/*"
+  ],
+  "ts-node": {
+    "esm": true,
+  }
+}

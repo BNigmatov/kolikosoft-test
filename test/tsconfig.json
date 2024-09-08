@@ -1,0 +1,19 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "noUnusedLocals": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "noUncheckedIndexedAccess": false,
+    "verbatimModuleSyntax": false,
+    "paths": {
+      "@app/*": ["../src/*"],
+    }
+  },
+  "include": [
+    "../test",
+  ],
+  "exclude": [
+    "node_modules",
+    "arch/**/*"
+  ]
+}

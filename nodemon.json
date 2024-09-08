@@ -1,0 +1,17 @@
+{
+  "execMap": {
+    "ts": "node --no-warnings=ExperimentalWarning --loader ts-node/esm"
+  },
+  "ignore": [
+    "test/**/*.ts",
+    "test/**/*.spec.ts",
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "src",
+    "docs",
+    ".env"
+  ],
+  "ext": "ts,js,json,yaml,yml"
+}

@@ -1,0 +1,100 @@
+{
+    "root": true,
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.{m,c,}ts"
+            ],
+            "extends": [
+                "google",
+                "plugin:@typescript-eslint/recommended"
+            ],
+            "parser": "@typescript-eslint/parser",
+            "parserOptions": {
+                "project": [
+                    "./tsconfig.eslint.json",
+                    "./build/tsconfig.json"
+                ]
+            },
+            "plugins": [
+                "@typescript-eslint",
+                "@stylistic"
+            ],
+            "rules": {
+                "max-len": [
+                    "error",
+                    {
+                        "code": 140,
+                        "comments": 140
+                    }
+                ],
+                "indent": [
+                    "error",
+                    4,
+                    {
+                        "SwitchCase": 1
+                    }
+                ],
+                "linebreak-style": [
+                    "error",
+                    "windows"
+                ],
+                "quotes": [
+                    "error",
+                    "single"
+                ],
+                "object-curly-spacing": [
+                    "error",
+                    "always"
+                ],
+                "block-spacing": [
+                    "error",
+                    "always"
+                ],
+                // This rule was deprecated in ESLint v5.10.0. But in google rules it is
+                "require-jsdoc": "off",
+                "@typescript-eslint/no-use-before-define": "error",
+                "@stylistic/type-annotation-spacing": "error",
+                "@typescript-eslint/no-empty-function": [
+                    "error",
+                    {
+                        "allow": [
+                            "methods",
+                            "asyncMethods"
+                        ]
+                    }
+                ],
+                "@typescript-eslint/no-unused-vars": [
+                    "warn",
+                    {
+                        "varsIgnorePattern": "^(_)", // we use ts(6133) instead
+                        "argsIgnorePattern": "^(_)"
+                    }
+                ],
+                "operator-linebreak": [
+                    "error",
+                    "after",
+                    {
+                        "overrides": {
+                            "?": "before",
+                            ":": "before",
+                            "||": "before"
+                        }
+                    }
+                ],
+                "brace-style": [
+                    "error",
+                    "stroustrup",
+                    {
+                        "allowSingleLine": true
+                    }
+                ],
+                "no-console": "error"
+            }
+        }
+    ]
+}

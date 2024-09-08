@@ -1,0 +1,7 @@
+// this config for ts-jest, see: jest.config.base.ts `tsconfig` in globals
+{
+  "extends": "./test/tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+  },
+}

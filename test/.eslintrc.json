@@ -1,0 +1,24 @@
+{
+    // see rules list here: https://github.com/jest-community/eslint-plugin-jest#rules
+    "extends": [
+        "plugin:jest/recommended",
+        "plugin:jest/style"
+    ],
+    "env": {
+        "jest": true
+    },
+    "overrides": [
+        {
+            "files": [
+                "*.ts"
+            ],
+            "rules": {
+                "@typescript-eslint/no-unused-vars": "off",
+                "@typescript-eslint/no-var-requires": "off",
+                "jest/consistent-test-it": "error",
+                "jest/prefer-spy-on": "warn",
+                "no-console": "off"
+            }
+        }
+    ]
+}
